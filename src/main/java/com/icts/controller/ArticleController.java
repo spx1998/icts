@@ -16,7 +16,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Objects;
 
-@RestController("/article")
+@RestController
+@RequestMapping("/article")
 @Slf4j
 public class ArticleController {
 

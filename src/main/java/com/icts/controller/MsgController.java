@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Objects;
 
-@RestController("/msg")
+@RestController
+@RequestMapping("/msg")
 @Slf4j
 public class MsgController {
 
