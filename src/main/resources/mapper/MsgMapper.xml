@@ -11,7 +11,7 @@
         <result property="gmtCreate" column="gmt_create" />
         <result property="gmtModified" column="gmt_modified" />
     </resultMap>
-    <insert id="insertMsg" parameterType="Msg">
+    <insert id="insertMsg" parameterType="com.icts.model.Msg">
         INSERT INTO msg (code, content, is_display)
         VALUES (#{code}, #{content}, #{isDisplay})
     </insert>
