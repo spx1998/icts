@@ -35,7 +35,7 @@ public class FileController {
     @Autowired
     private EmailService emailService;
 
-    public static final String FILE_PATH = "~/register";
+    public static final String FILE_PATH = "/root/register";
 
     @RequestMapping(method = RequestMethod.GET, value = "/query")
     public Response<List<String>> query() {
