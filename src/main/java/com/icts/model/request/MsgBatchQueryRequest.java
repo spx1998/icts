@@ -11,6 +11,4 @@ import java.io.Serializable;
 public class MsgBatchQueryRequest extends BaseRequest implements Serializable {
     private static final long serialVersionUID = 916383591325779338L;
     private Integer size;
-    private String secret;
-
 }
