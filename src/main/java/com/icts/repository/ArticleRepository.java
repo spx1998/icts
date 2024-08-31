@@ -9,9 +9,14 @@ public class ArticleRepository {
         throw new RuntimeException();
     }
 
-    public void updateByCode(String code) {
+    public void updateByCode(String code, String title, String content) {
 
     }
+
+    public void insert(String code, String title, String content) {
+
+    }
+
 }
 
 

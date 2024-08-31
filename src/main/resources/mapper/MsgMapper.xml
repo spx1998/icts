@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icts.mapper.MsgMapper">
+
+    <!-- 定义 resultMap -->
+    <resultMap id="msgResultMap" type="com.icts.model.Msg">
+        <id property="id" column="id" />
+        <result property="code" column="code"/>
+        <result property="content" column="content"/>
+        <result property="isDisplay" column="is_display"/>
+        <result property="gmtCreate" column="gmt_create" />
+        <result property="gmtModified" column="gmt_modified" />
+    </resultMap>
+    <insert id="insertMsg" parameterType="Msg">
+        INSERT INTO msg (code, content, is_display)
+        VALUES (#{code}, #{content}, #{isDisplay})
+    </insert>
+
+    <select id="selectMsgById" parameterType="java.lang.Integer" resultType="Msg">
+        SELECT id, code, content, is_display, gmt_create, gmt_modified
+        FROM msg WHERE id = #{id}
+    </select>
+
+    <select id="selectMsgByCode" parameterType="java.lang.String" resultType="Msg">
+        SELECT id, code, content, is_display, gmt_create, gmt_modified
+        FROM msg WHERE code = #{code}
+    </select>
+
+    <update id="updateMsg" parameterType="Msg">
+        UPDATE msg
+        SET  content = #{content}, is_display = #{isDisplay}
+        WHERE code =#{code}
+    </update>
+
+    <delete id="deleteMsg" parameterType="java.lang.Integer">
+        DELETE FROM msg WHERE id = #{id}
+    </delete>
+
+    <delete id="deleteMsgByCode" parameterType="java.lang.String">
+        DELETE FROM msg WHERE code = #{code}
+    </delete>
+
+    <select id="selectAllMsgs" resultType="Msg">
+        SELECT id, code, content, is_display, gmt_create, gmt_modified
+        FROM msg
+    </select>
+
+    <select id="selectMsgsBySize" parameterType="int" resultType="Msg">
+        SELECT id, code, content, is_display, gmt_create, gmt_modified
+        FROM msg  order by gmt_modified desc LIMIT #{size}
+    </select>
+
+</mapper>

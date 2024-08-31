@@ -11,4 +11,7 @@ import java.io.Serializable;
 public class MsgUpdateRequest extends BaseAuthRequest implements Serializable {
 
     private static final long serialVersionUID = 2870259895536423755L;
+    private String code;
+    private String content;
+    private Boolean isDisplay = Boolean.TRUE;
 }

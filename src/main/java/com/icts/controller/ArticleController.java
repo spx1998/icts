@@ -46,12 +46,15 @@ public class ArticleController {
         if (!SecretUtils.check(request.getSecret())) {
             return Response.failed(String.format("wrong secret:%s", request.getSecret()));
         }
-//        Article article = articleRepository.queryByCode(code);
-//        if (Objects.isNull(article)) {
-//            return Response.failed("article not exist");
-//        }
-//        articleRepository.updateByCode(code);
-//        return Response.success();
-        throw new RuntimeException();
+        Article article = articleRepository.queryByCode(request.getCode());
+        if (Objects.isNull(article)) {
+            log.warn("insert article:{}", request.getTitle());
+            articleRepository.insert(request.getCode(), request.getTitle(), request.getContent());
+            return Response.success("insert");
+
+        } else {
+            articleRepository.updateByCode(request.getCode(), request.getTitle(), request.getContent());
+        }
+        return Response.success("update");
     }
 }
