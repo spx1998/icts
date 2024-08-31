@@ -3,12 +3,13 @@ package com.icts.repository;
 import com.icts.mapper.ArticleMapper;
 import com.icts.model.Article;
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 @Repository
 public class ArticleRepository {
 
-    @Mapper
+    @Autowired
     private ArticleMapper articleMapper;
 
     public Article queryByCode(String code) {
