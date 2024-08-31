@@ -21,11 +21,11 @@ public class MsgRepository {
     }
 
     public void insert(String code, String content, Boolean isDisplay) {
-        msgMapper.insertMsg(buildMsg(code, code, isDisplay));
+        msgMapper.insertMsg(buildMsg(code, content, isDisplay));
     }
 
     public void updateByCode(String code, String content, Boolean isDisplay) {
-        msgMapper.updateMsg(buildMsg(code, code, isDisplay));
+        msgMapper.updateMsg(buildMsg(code, content, isDisplay));
     }
 
     private Msg buildMsg(String code, String content, Boolean isDisplay) {

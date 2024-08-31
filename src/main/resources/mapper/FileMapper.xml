@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.Mapper.FileMapper">
+
+    <!-- 定义 resultMap -->
+    <resultMap id="fileResultMap" type="com.icts.model.File">
+        <id property="id" column="id"/>
+        <result property="fileName" column="file_name"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+
+    <insert id="insertFile" parameterType="com.icts.model.File">
+        INSERT INTO file (file_name)
+        VALUES (#{fileName})
+    </insert>
+
+    <delete id="deleteFileById" parameterType="int">
+        DELETE FROM file WHERE id = #{id}
+    </delete>
+
+    <select id="selectFileById" parameterType="int" resultMap="fileResultMap">
+        SELECT id, file_name, gmt_create, gmt_modified
+        FROM file WHERE id = #{id}
+    </select>
+
+    <update id="updateFile" parameterType="com.icts.model.File">
+        UPDATE file
+        SET file_name = #{fileName}
+        WHERE id = #{id}
+    </update>
+
+    <select id="selectAllFiles" resultMap="fileResultMap">
+        SELECT id, file_name, gmt_create, gmt_modified
+        FROM file
+    </select>
+
+</mapper>

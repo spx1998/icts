@@ -3,6 +3,7 @@ package com.icts.model;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -12,6 +13,7 @@ public class Article implements Serializable {
     private String code;
     private String title;
     private String content;
-    //    todo
     private List<String> subtitle;
+    private Date gmtCreate;
+    private Date gmtModified;
 }

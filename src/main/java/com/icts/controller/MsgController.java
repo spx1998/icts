@@ -49,12 +49,14 @@ public class MsgController {
         Msg msg = msgRepository.queryByCode(request.getCode());
         if (Objects.isNull(msg)) {
             log.warn("insert msg:{}", request.getContent());
-            msgRepository.insert(request.getCode(), request.getContent(),request.getIsDisplay());
+            msgRepository.insert(request.getCode(), request.getContent(), request.getIsDisplay());
             return Response.success("insert");
 
         } else {
-            msgRepository.updateByCode(request.getCode(), request.getContent(),request.getIsDisplay());
+            log.warn("update msg:{}", request.getContent());
+            msgRepository.updateByCode(request.getCode(), request.getContent(), request.getIsDisplay());
+            return Response.success("update");
+
         }
-        return Response.success("update");
     }
 }

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.icts.mapper.ArticleMapper">
+
+    <!-- 定义 resultMap -->
+    <resultMap id="articleResultMap" type="com.icts.model.Article">
+        <id property="id" column="id"/>
+        <result property="code" column="code"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="gmtCreate" column="gmt_create"/>
+        <result property="gmtModified" column="gmt_modified"/>
+    </resultMap>
+
+    <insert id="insertArticle" parameterType="com.icts.model.Article">
+        INSERT INTO article (code, title, content)
+        VALUES (#{code}, #{title}, #{content})
+    </insert>
+
+    <delete id="deleteArticleByCode" parameterType="java.lang.String">
+        DELETE FROM article WHERE code = #{code}
+    </delete>
+
+    <select id="selectArticleByCode" parameterType="java.lang.String" resultMap="articleResultMap">
+        SELECT id, code, title, content, gmt_create, gmt_modified
+        FROM article WHERE code = #{code}
+    </select>
+
+    <update id="updateArticleByCode" parameterType="com.icts.model.Article">
+        UPDATE article
+        SET title = #{title}, content = #{content}
+        WHERE code = #{code}
+    </update>
+
+</mapper>
