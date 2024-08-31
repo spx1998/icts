@@ -24,7 +24,7 @@ public class ArticleController {
     @Autowired
     private ArticleRepository articleRepository;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/query")
+    @RequestMapping(method = RequestMethod.GET, value = "/query")
     public Response<Article> query(ArticleQueryRequest request) {
         if (Objects.isNull(request) || Objects.isNull(request.getCode())) {
             log.error("param error {}", JSON.toJSONString(request));

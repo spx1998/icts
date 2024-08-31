@@ -25,7 +25,7 @@ public class MsgController {
     @Autowired
     private MsgRepository msgRepository;
 
-    @RequestMapping(method = RequestMethod.POST, value = "/query")
+    @RequestMapping(method = RequestMethod.GET, value = "/query")
     public Response<Article> query(MsgBatchQueryRequest request) {
         if (Objects.isNull(request) || Objects.isNull(request.getSize())) {
             log.error("param error {}", JSON.toJSONString(request));
