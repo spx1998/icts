@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,14 +34,11 @@ public class MsgController {
             return Response.failed("param error");
         }
         List<Msg> msgList = msgRepository.batchQuery(request.getSize());
-        if (CollectionUtils.isEmpty(msgList)) {
-            return Response.failed("msg is empty");
-        }
         return Response.success(msgList);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/update")
-    public Response<String> update(MsgUpdateRequest request) {
+    public Response<String> update(@RequestBody MsgUpdateRequest request) {
         if (Objects.isNull(request) || StringUtils.isBlank(request.getCode()) || StringUtils.isBlank(request.getContent()) || Objects.nonNull(request.getIsDisplay())) {
             log.error("param error {}", JSON.toJSONString(request));
             return Response.failed("param error");

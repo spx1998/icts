@@ -10,6 +10,7 @@ import com.icts.repository.ArticleRepository;
 import com.icts.utils.SecretUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -38,7 +39,7 @@ public class ArticleController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/update")
-    public Response<String> update(ArticleUpdateRequest request) {
+    public Response<String> update(@RequestBody ArticleUpdateRequest request) {
         if (Objects.isNull(request) || Objects.isNull(request.getCode()) || Objects.isNull(request.getTitle()) || Objects.isNull(request.getContent())) {
             log.error("param error {}", JSON.toJSONString(request));
             return Response.failed("param error");
