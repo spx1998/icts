@@ -16,17 +16,17 @@
         VALUES (#{code}, #{content}, #{isDisplay})
     </insert>
 
-    <select id="selectMsgById" parameterType="java.lang.Integer" resultType="Msg">
+    <select id="selectMsgById" parameterType="java.lang.Integer" resultMap="msgResultMap">
         SELECT id, code, content, is_display, gmt_create, gmt_modified
         FROM msg WHERE id = #{id}
     </select>
 
-    <select id="selectMsgByCode" parameterType="java.lang.String" resultType="Msg">
+    <select id="selectMsgByCode" parameterType="java.lang.String" resultMap="msgResultMap">
         SELECT id, code, content, is_display, gmt_create, gmt_modified
         FROM msg WHERE code = #{code}
     </select>
 
-    <update id="updateMsg" parameterType="Msg">
+    <update id="updateMsg" parameterType="com.icts.model.Msg">
         UPDATE msg
         SET  content = #{content}, is_display = #{isDisplay}
         WHERE code =#{code}
@@ -40,7 +40,7 @@
         DELETE FROM msg WHERE code = #{code}
     </delete>
 
-    <select id="selectAllMsgs" resultType="Msg">
+    <select id="selectAllMsgs"  resultMap="msgResultMap">
         SELECT id, code, content, is_display, gmt_create, gmt_modified
         FROM msg
     </select>
