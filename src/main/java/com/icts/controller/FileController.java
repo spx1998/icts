@@ -12,10 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.CollectionUtils;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -50,7 +47,7 @@ public class FileController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
-    public Response<String> upload(@RequestParam("file") MultipartFile file) {
+    public Response<String> upload(@RequestBody MultipartFile file) {
         if (file.isEmpty()) {
             log.error("file is empty");
             return Response.failed("file is empty");
