@@ -47,7 +47,7 @@ public class FileController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
-    public Response<String> upload(@RequestBody MultipartFile file) {
+    public Response<String> upload(@RequestParam("file") MultipartFile file) {
         if (file.isEmpty()) {
             log.error("file is empty");
             return Response.failed("file is empty");
