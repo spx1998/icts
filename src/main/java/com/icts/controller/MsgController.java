@@ -39,7 +39,7 @@ public class MsgController {
 
     @RequestMapping(method = RequestMethod.POST, value = "/update")
     public Response<String> update(@RequestBody MsgUpdateRequest request) {
-        if (Objects.isNull(request) || StringUtils.isBlank(request.getCode()) || StringUtils.isBlank(request.getContent()) || Objects.nonNull(request.getIsDisplay())) {
+        if (Objects.isNull(request) || StringUtils.isBlank(request.getCode()) || StringUtils.isBlank(request.getContent()) || Objects.isNull(request.getIsDisplay())) {
             log.error("param error {}", JSON.toJSONString(request));
             return Response.failed("param error");
         }
