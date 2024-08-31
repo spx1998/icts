@@ -45,7 +45,7 @@
         FROM msg
     </select>
 
-    <select id="selectMsgsBySize" parameterType="int" resultType="Msg">
+    <select id="selectMsgsBySize" parameterType="int" resultMap="msgResultMap">
         SELECT id, code, content, is_display, gmt_create, gmt_modified
         FROM msg  order by gmt_modified desc LIMIT #{size}
     </select>
