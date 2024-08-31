@@ -1,2 +1,4 @@
-package com.icts.model.request;public class BaseRequest {
+package com.icts.model.request.base;
+
+public abstract class BaseRequest {
 }
