@@ -46,7 +46,7 @@ public class FileController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/upload")
-    public Response<String> upload(@RequestParam("file") MultipartFile file) {
+    public Response<String> upload(@RequestParam("file") MultipartFile file,@RequestParam("type")String fileType) {
         if (file.isEmpty()) {
             log.error("file is empty");
             return Response.failed("file is empty");
@@ -84,7 +84,7 @@ public class FileController {
             // 插入数据库
             fileRepository.insert(newFileName);
             // 异步发邮件
-            emailService.sendEmailWithAttachment(newFileName, FILE_PATH);
+            emailService.sendEmailWithAttachment(newFileName, FILE_PATH,fileType);
             return Response.success(newFileName);
         } catch (IOException e) {
             log.error("upload file error", e);

@@ -1,6 +1,7 @@
 package com.icts.service;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -30,16 +31,23 @@ public class EmailService {
     private String receiverEmail;
     public static final String TITLE = "A new registration form is received.";
     public static final String TEXT = "A new registration form has been received. Please see the attachment for the content.";
+    public static final String TITLE_2 = "A new thesis  is received.";
+    public static final String TEXT_2 = "A new thesis has been received. Please see the attachment for the content.";
 
-    public void sendEmailWithAttachment(String fileName, String filePath) {
+    public void sendEmailWithAttachment(String fileName, String filePath, String fileType) {
         threadPoolExecutor.execute(() -> {
             try {
                 MimeMessage message = javaMailSender.createMimeMessage();
                 MimeMessageHelper helper = new MimeMessageHelper(message, true);
                 helper.setFrom(senderEmail);
                 helper.setTo(receiverEmail);
-                helper.setSubject(TITLE);
-                helper.setText(TEXT);
+                if (StringUtils.isBlank(fileType) || StringUtils.equals(fileType, "register")) {
+                    helper.setSubject(TITLE);
+                    helper.setText(TEXT);
+                } else {
+                    helper.setSubject(TITLE_2);
+                    helper.setText(TEXT_2);
+                }
 
                 File file = new File(filePath + "/" + fileName);
                 helper.addAttachment(fileName, file);
