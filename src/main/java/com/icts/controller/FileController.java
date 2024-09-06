@@ -21,8 +21,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+
 import java.util.stream.Collectors;
 
 @Slf4j
@@ -35,7 +34,7 @@ public class FileController {
     @Autowired
     private EmailService emailService;
 
-    public static final String FILE_PATH = "/root/register";
+    public static final String FILE_PATH = "/root/project/register";
 
     @RequestMapping(method = RequestMethod.GET, value = "/query")
     public Response<List<String>> query() {
