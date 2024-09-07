@@ -33,6 +33,8 @@ public class EmailService {
     public static final String TEXT = "A new registration form has been received. Please see the attachment for the content.";
     public static final String TITLE_2 = "A new thesis  is received.";
     public static final String TEXT_2 = "A new thesis has been received. Please see the attachment for the content.";
+    public static final String TYPE_REGISTER = "register";
+    public static final String TYPE_THESIS = "thesis";
 
     public void sendEmailWithAttachment(String fileName, String filePath, String fileType) {
         threadPoolExecutor.execute(() -> {
@@ -41,7 +43,7 @@ public class EmailService {
                 MimeMessageHelper helper = new MimeMessageHelper(message, true);
                 helper.setFrom(senderEmail);
                 helper.setTo(receiverEmail);
-                if (StringUtils.isBlank(fileType) || StringUtils.equals(fileType, "register")) {
+                if (StringUtils.isBlank(fileType) || StringUtils.equals(fileType, TYPE_REGISTER)) {
                     helper.setSubject(TITLE);
                     helper.setText(TEXT);
                 } else {

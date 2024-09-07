@@ -29,10 +29,13 @@ public class SecretUtils {
         // 获取当天开始时间（上海时间）
         ZonedDateTime startOfDayShanghai = LocalDateTime.now().atZone(shanghaiZone).toLocalDate().atStartOfDay().atZone(shanghaiZone);
         long startTimestamp = startOfDayShanghai.toInstant().toEpochMilli();
+        log.info("startTime:{}", secret);
 
         // 获取当天结束时间（上海时间）
         ZonedDateTime endOfDayShanghai = LocalDateTime.now().atZone(shanghaiZone).toLocalDate().atTime(23, 59, 59).atZone(shanghaiZone);
         long endTimestamp = endOfDayShanghai.toInstant().toEpochMilli();
+        log.info("entTime:{}", secret);
+
         return current >= startTimestamp && current <= endTimestamp;
     }
 }
