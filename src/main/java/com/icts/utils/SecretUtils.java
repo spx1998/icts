@@ -25,9 +25,12 @@ public class SecretUtils {
         }
         // 获取上海时区
         ZoneId shanghaiZone = ZoneId.of("Asia/Shanghai");
+        log.info("now:{}", System.currentTimeMillis());
 
         // 获取当天开始时间（上海时间）
         ZonedDateTime startOfDayShanghai = LocalDateTime.now().atZone(shanghaiZone).toLocalDate().atStartOfDay().atZone(shanghaiZone);
+        log.info("shanghai:{}", System.currentTimeMillis());
+
         long startTimestamp = startOfDayShanghai.toInstant().toEpochMilli();
         log.info("startTime:{}", startTimestamp);
 
