@@ -43,9 +43,9 @@ public class MsgController {
             log.error("param error {}", JSON.toJSONString(request));
             return Response.failed("param error");
         }
-        if (!SecretUtils.check(request.getSecret())) {
-            return Response.failed(String.format("wrong secret:%s", request.getSecret()));
-        }
+//        if (!SecretUtils.check(request.getSecret())) {
+//            return Response.failed(String.format("wrong secret:%s", request.getSecret()));
+//        }
         Msg msg = msgRepository.queryByCode(request.getCode());
         if (Objects.isNull(msg)) {
             log.warn("insert msg:{}", request.getContent());

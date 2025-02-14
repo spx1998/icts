@@ -53,9 +53,9 @@ public class ArticleController {
             log.error("param error {}", JSON.toJSONString(request));
             return Response.failed("param error");
         }
-        if (!SecretUtils.check(request.getSecret())) {
-            return Response.failed(String.format("wrong secret:%s", request.getSecret()));
-        }
+//        if (!SecretUtils.check(request.getSecret())) {
+//            return Response.failed(String.format("wrong secret:%s", request.getSecret()));
+//        }
         Article article = articleRepository.queryByCode(request.getCode());
         if (Objects.isNull(article)) {
             log.warn("insert article:{}", request.getTitle());
